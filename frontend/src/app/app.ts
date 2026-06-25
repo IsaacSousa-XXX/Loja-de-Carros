@@ -1,9 +1,15 @@
+//import { Estoque } from './components/estoque/estoque';
+//import { Login } from './components/login/login';
+//import { Dashboard } from './components/dashboard/dashboard';
+//import { VeiculoForm } from './components/veiculo-form/veiculo-form';
+import { Detalhes } from './components/detalhes/detalhes';
+//import { CadastroConta } from './components/cadastro/cadastro';
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Detalhes],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

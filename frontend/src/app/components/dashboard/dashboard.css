@@ -1,0 +1,15 @@
+/* Cria o movimento contínuo da direita para a esquerda */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Aplica a animação para durar 30 segundos e nunca parar */
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Opcional: Pausa a animação se o usuário colocar o mouse em cima */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}

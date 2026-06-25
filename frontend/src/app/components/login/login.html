@@ -1,0 +1,51 @@
+<div class="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden font-sans">
+  
+  <div class="absolute inset-0 bg-gradient-to-br from-red-900/20 via-black to-black pointer-events-none"></div>
+
+  <div class="bg-neutral-900 border border-neutral-800 p-8 md:p-10 rounded shadow-[0_0_40px_rgba(220,38,38,0.15)] w-full max-w-md relative z-10">
+    
+    <div class="text-center mb-10 border-b border-neutral-800 pb-6">
+      <h1 class="text-2xl font-['Michroma'] tracking-[0.1em] filter drop-shadow-[0_4px_4px_rgba(0,0,0,1)] mb-2">
+        <span class="bg-gradient-to-b from-gray-400 via-white to-gray-500 bg-clip-text text-transparent">KING OF</span>
+        <span class="bg-gradient-to-b from-red-700 via-red-500 to-red-950 bg-clip-text text-transparent ml-2">CARS</span>
+      </h1>
+      <p class="text-red-500 text-[10px] uppercase tracking-[0.3em] font-black">Acesso Restrito</p>
+    </div>
+
+    <form class="flex flex-col gap-6">
+      
+      <div class="flex flex-col gap-2">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Credencial de Acesso</label>
+        <div class="relative">
+          <input type="text" placeholder="Admin..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 pl-10 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-neutral-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Código de Segurança</label>
+        <div class="relative">
+          <input type="password" placeholder="••••••••" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 pl-10 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-neutral-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-6 pt-6 border-t border-neutral-800 text-center">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+        Novo por aqui? 
+        <button type="button" class="text-red-500 hover:text-red-400 transition-colors ml-1 cursor-pointer">Cadastrar Conta</button>
+      </p>
+      </div>
+
+      <button type="button" class="mt-2 w-full bg-red-600 hover:bg-red-700 text-white font-black py-3.5 px-6 rounded shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all duration-200 uppercase text-xs tracking-widest flex justify-center items-center gap-3 group">
+        Autorizar Acesso
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+      </button>
+
+    </form>
+  </div>
+</div>
