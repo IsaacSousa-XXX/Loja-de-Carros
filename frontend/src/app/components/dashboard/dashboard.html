@@ -1,29 +1,18 @@
 <div class="min-h-screen bg-black font-sans">
   
   <div class="relative w-full h-72 bg-black overflow-hidden border-b border-red-700">
-    
     <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 pointer-events-none"></div>
-
     <div class="absolute inset-0 z-20 w-full h-full flex flex-col items-center justify-center pointer-events-none">
       <h1 class="text-3xl md:text-5xl text-center font-['Michroma'] tracking-[0.1em] filter drop-shadow-[0_8px_8px_rgba(0,0,0,1)]">
-        
-        <span class="bg-gradient-to-b from-gray-400 via-white to-gray-500 bg-clip-text text-transparent">
-          KING OF
-        </span>
-        
-        <span class="bg-gradient-to-b from-red-700 via-red-500 to-red-950 bg-clip-text text-transparent ml-3">
-          CARS
-        </span>
-        
+        <span class="bg-gradient-to-b from-gray-400 via-white to-gray-500 bg-clip-text text-transparent">KING OF</span>
+        <span class="bg-gradient-to-b from-red-700 via-red-500 to-red-950 bg-clip-text text-transparent ml-3">CARS</span>
       </h1>
     </div>
-
     <div class="flex w-[200%] h-full animate-scroll">
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
-      
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
       <div class="w-1/4 h-full"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"></div>
@@ -41,7 +30,6 @@
     </div>
 
     <div class="mb-8 bg-neutral-900 border border-neutral-800 p-4 rounded flex flex-col gap-4 shadow-lg">
-      
       <div class="flex flex-col sm:flex-row gap-3">
         <div class="relative flex-1">
           <input type="text" placeholder="Buscar veículo por nome ou modelo..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 rounded px-4 py-2.5 pl-10 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
@@ -49,7 +37,6 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </div>
         </div>
-        
         <button class="bg-neutral-950 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 font-bold py-2.5 px-5 rounded transition-colors flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V17a1 1 0 01-.447.894l-4 2A1 1 0 017 19v-5.586L3.293 6.707A1 1 0 013 6V4z" /></svg>
           Filtrar Catálogo
@@ -57,7 +44,6 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-neutral-800 pt-4">
-        
         <div class="flex flex-col gap-1.5">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Marca</label>
           <select class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer appearance-none">
@@ -69,7 +55,6 @@
             <option value="bmw">BMW</option>
           </select>
         </div>
-
         <div class="flex flex-col gap-1.5">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Ano</label>
           <select class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
@@ -81,7 +66,6 @@
             <option value=">=2022">2022 ou anterior</option>
           </select>
         </div>
-
         <div class="flex flex-col gap-1.5">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Tipo de Veículo</label>
           <select class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
@@ -90,35 +74,46 @@
             <option value="moto">Moto</option>
           </select>
         </div>
-
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div *ngIf="carregando" class="flex justify-center items-center py-20 text-neutral-500 font-black uppercase tracking-widest text-sm">
+      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      Acessando banco de dados...
+    </div>
+
+    <div *ngIf="!carregando && estoque.length === 0" class="text-center py-20 border border-dashed border-neutral-800 rounded bg-neutral-900/50">
+      <p class="text-neutral-500 font-bold uppercase tracking-widest text-sm">A vitrine está vazia.</p>
+    </div>
+
+    <div *ngIf="!carregando && estoque.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       
-      <div class="bg-neutral-900 rounded border border-neutral-800 overflow-hidden hover:border-red-600 transition-colors duration-300 group">
-        
+<div *ngFor="let veiculo of estoque" [routerLink]="['/detalhes', veiculo.id]" class="bg-neutral-900 rounded border border-neutral-800 overflow-hidden hover:border-red-600 transition-colors duration-300 group cursor-pointer">        
         <div class="h-52 bg-neutral-800 relative overflow-hidden group-hover:opacity-90 transition-opacity flex items-center justify-center">
-          <div class="flex flex-col items-center justify-center text-neutral-600">
+          
+          <img *ngIf="veiculo.imagem_url" [src]="veiculo.imagem_url" alt="{{ veiculo.modelo }}" class="w-full h-full object-cover">
+          
+          <div *ngIf="!veiculo.imagem_url" class="flex flex-col items-center justify-center text-neutral-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             <span class="text-[10px] uppercase tracking-[0.2em] font-bold">Sem Imagem</span>
           </div>
-          <span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded shadow uppercase tracking-wider">Moto</span>
+
+          <span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded shadow uppercase tracking-wider">{{ veiculo.categoria }}</span>
         </div>
         
         <div class="p-5">
-          <div class="text-xs font-bold text-neutral-500 mb-1 uppercase tracking-widest">Honda</div>
-          <h3 class="text-xl font-bold text-white leading-tight mb-3 truncate">CBX 250 Twister</h3>
+          <div class="text-xs font-bold text-neutral-500 mb-1 uppercase tracking-widest">{{ veiculo.marca }}</div>
+          <h3 class="text-xl font-bold text-white leading-tight mb-3 truncate">{{ veiculo.modelo }}</h3>
           
           <div class="flex items-center gap-2 mb-4">
-            <span class="bg-neutral-950 border border-neutral-800 text-neutral-300 font-mono px-2 py-1 rounded text-xs">2008</span>
+            <span class="bg-neutral-950 border border-neutral-800 text-neutral-300 font-mono px-2 py-1 rounded text-xs">{{ veiculo.ano }}</span>
           </div>
           
           <div class="flex justify-between items-center pt-4 border-t border-neutral-800 mt-2">
-            <div class="text-xl font-black text-white">R$ <span class="text-red-500">8.500</span></div>
-            
+            <div class="text-xl font-black text-white">R$ <span class="text-red-500">{{ veiculo.preco }}</span></div>
           </div>
         </div>
+
       </div>
       
     </div>

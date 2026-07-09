@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-black font-sans text-neutral-200 pb-12">
   
   <nav class="bg-black border-b border-neutral-900 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
-    <button class="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+    <button routerLink="/" class="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest cursor-pointer">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
       Voltar à Vitrine
     </button>
@@ -15,7 +15,7 @@
     <div id="galeria-veiculo" class="flex w-full h-full overflow-x-auto snap-x snap-mandatory scroll-smooth" style="scrollbar-width: none;">
       
       <div class="w-full h-full flex-none snap-center relative">
-        <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80" alt="Foto 1" class="w-full h-full object-cover">
+        <img [src]="veiculo?.imagem_url || 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc'" alt="{{ veiculo?.modelo }}" class="w-full h-full object-cover">
       </div>
       <div class="w-full h-full flex-none snap-center relative">
         <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=1200&q=80" alt="Foto 2" class="w-full h-full object-cover">
@@ -73,14 +73,14 @@
       
       <div class="flex-1 w-full">
         <div class="mb-8">
-          <p class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">Honda</p>
-          <h1 class="text-4xl md:text-5xl font-black text-white leading-tight uppercase tracking-tight">CBX 250 Twister</h1>
+          <p class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">{{ veiculo?.marca }}</p>
+          <h1 class="text-4xl md:text-5xl font-black text-white leading-tight uppercase tracking-tight">{{ veiculo?.modelo }}</h1>
           <div class="flex items-center gap-3 mt-4">
-            <span class="bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono px-3 py-1 rounded text-sm shadow-inner">2008</span>
+            <span class="bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono px-3 py-1 rounded text-sm shadow-inner">{{ veiculo?.ano }}</span>
             <span class="text-neutral-600">•</span>
-            <span class="text-sm font-medium text-neutral-400">Gasolina</span>
+            <span class="text-sm font-medium text-neutral-400">{{ veiculo?.combustivel }}</span>
             <span class="text-neutral-600">•</span>
-            <span class="text-sm font-medium text-neutral-400">Moto</span>
+            <span class="text-sm font-medium text-neutral-400">{{ veiculo?.tipo }}</span>
           </div>
         </div>
 
@@ -96,22 +96,22 @@
             <div class="bg-neutral-900 border border-neutral-800 rounded p-4 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest">Quilometragem</p>
-              <p class="text-white font-mono text-sm mt-1">45.000 km</p>
+              <p class="text-white font-mono text-sm mt-1">{{ veiculo?.quilometragem || '---' }}</p>
             </div>
             <div class="bg-neutral-900 border border-neutral-800 rounded p-4 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest">Motor</p>
-              <p class="text-white font-mono text-sm mt-1">249cc</p>
+              <p class="text-white font-mono text-sm mt-1">{{ veiculo?.motor || '---' }}</p>
             </div>
             <div class="bg-neutral-900 border border-neutral-800 rounded p-4 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
               <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest">Placa</p>
-              <p class="text-white font-mono text-sm mt-1">Final 4</p>
+              <p class="text-white font-mono text-sm mt-1">Final {{ veiculo?.placa_final || '-' }}</p>
             </div>
             <div class="bg-neutral-900 border border-neutral-800 rounded p-4 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" /></svg>
               <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest">Revisão</p>
-              <p class="text-green-500 font-mono text-sm mt-1">Em dia</p>
+              <p class="text-green-500 font-mono text-sm mt-1">{{ veiculo?.revisao || '---' }}</p>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
       <div class="w-full md:w-80 bg-neutral-900 border border-neutral-800 rounded shadow-2xl p-6 md:sticky md:top-24">
         <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-2">Investimento</p>
         <div class="text-4xl font-black text-white mb-6">
-          <span class="text-red-600 text-lg mr-1 align-top">R$</span>8.500
+          <span class="text-red-600 text-lg mr-1 align-top"></span>{{veiculo?.preco | currency:'BRL':'symbol':'1.0-0'}}
         </div>
         
         <button class="w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white font-black py-4 px-6 rounded shadow-[0_0_20px_rgba(37,211,102,0.3)] transition-all duration-200 flex justify-center items-center gap-3 uppercase text-xs tracking-widest group mb-4">
