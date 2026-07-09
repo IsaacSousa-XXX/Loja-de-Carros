@@ -20,12 +20,12 @@
         
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Modelo do Veículo</label>
-          <input type="text" placeholder="Ex: CBX 250 Twister..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <input type="text" [(ngModel)]="novoVeiculo.modelo" name="modelo" placeholder="Ex: CBX 250 Twister..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
         </div>
 
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Marca</label>
-          <select class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium appearance-none cursor-pointer">
+          <select [(ngModel)]="novoVeiculo.marca" name="marca" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium appearance-none cursor-pointer">
             <option value="" disabled selected>Selecione a marca...</option>
             <option value="honda">Honda</option>
             <option value="yamaha">Yamaha</option>
@@ -37,12 +37,12 @@
 
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Ano de Fabricação</label>
-          <input type="number" placeholder="Ex: 2008" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <input type="number" [(ngModel)]="novoVeiculo.ano" name="ano" placeholder="Ex: 2008" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
         </div>
 
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Categoria</label>
-          <select class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium appearance-none cursor-pointer">
+          <select [(ngModel)]="novoVeiculo.categoria" name="categoria" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium appearance-none cursor-pointer">
             <option value="" disabled selected>Carro ou Moto?</option>
             <option value="carro">Carro</option>
             <option value="moto">Moto</option>
@@ -53,25 +53,35 @@
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Preço (R$)</label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-red-500 font-bold text-sm">R$</div>
-            <input type="text" placeholder="0,00" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 pl-12 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+            <input type="text" [(ngModel)]="novoVeiculo.preco" name="preco" placeholder="0,00" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 pl-12 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
           </div>
         </div>
 
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Link da Imagem</label>
-          <input type="text" placeholder="Cole a URL da foto do veículo..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <input type="text" [(ngModel)]="novoVeiculo.imagem_url" name="imagem_url" placeholder="Cole a URL da foto do veículo..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
         </div>
 
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-neutral-800">
-        <button type="button" class="w-full sm:w-1/3 bg-neutral-950 hover:bg-neutral-800 text-neutral-400 hover:text-white font-bold py-3.5 px-6 rounded border border-neutral-800 transition-all duration-200 uppercase text-xs tracking-widest text-center">
-          Cancelar
-        </button>
-        <button type="button" class="w-full sm:w-2/3 bg-red-600 hover:bg-red-700 text-white font-black py-3.5 px-6 rounded shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all duration-200 uppercase text-xs tracking-widest flex justify-center items-center gap-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-          Salvar no Banco de Dados
-        </button>
+      <div class="mt-6 pt-6 border-t border-neutral-800 flex flex-col gap-4">
+        
+        <div *ngIf="statusMensagem" 
+             [class]="statusMensagem.includes('sucesso') ? 'text-green-500' : 'text-red-500'"
+             class="text-xs font-bold text-center w-full uppercase tracking-widest p-2 bg-black/30 rounded border border-neutral-800">
+          {{ statusMensagem }}
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button type="button" class="w-full sm:w-1/3 bg-neutral-950 hover:bg-neutral-800 text-neutral-400 hover:text-white font-bold py-3.5 px-6 rounded border border-neutral-800 transition-all duration-200 uppercase text-xs tracking-widest text-center">
+            Cancelar
+          </button>
+          
+          <button type="button" (click)="salvarNoBanco()" class="w-full sm:w-2/3 bg-red-600 hover:bg-red-700 text-white font-black py-3.5 px-6 rounded shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all duration-200 uppercase text-xs tracking-widest flex justify-center items-center gap-2 group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Salvar no Banco de Dados
+          </button>
+        </div>
       </div>
 
     </form>
