@@ -13,28 +13,34 @@
       
       <div class="flex flex-col gap-2">
         <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Nome de Usuário</label>
-        <input type="text" placeholder="Ex: Admin_KOC" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+        <input type="text" [(ngModel)]="novoUsuario.nome" name="nome" placeholder="Ex: Admin_KOC" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
       </div>
 
       <div class="flex flex-col gap-2">
         <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">E-mail Corporativo</label>
-        <input type="email" placeholder="seu@email.com" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+        <input type="email" [(ngModel)]="novoUsuario.email" name="email" placeholder="seu@email.com" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
       </div>
 
       <div class="grid grid-cols-2 gap-4">
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Senha</label>
-          <input type="password" placeholder="••••••••" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <input type="password" [(ngModel)]="novoUsuario.senha" name="senha" placeholder="••••••••" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
         </div>
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Confirmar</label>
-          <input type="password" placeholder="••••••••" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <input type="password" [(ngModel)]="novoUsuario.confirmarSenha" name="confirmarSenha" placeholder="••••••••" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
         </div>
       </div>
 
-      <button type="button" class="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-black py-3.5 px-6 rounded shadow-[0_0_15px_rgba(220,38,38,0.3)] transition-all duration-200 uppercase text-xs tracking-widest flex justify-center items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg>
-        Registrar Usuário
+      <div *ngIf="statusMensagem" 
+           [class]="statusMensagem.includes('sucesso') ? 'text-green-500' : 'text-red-500'"
+           class="text-xs font-bold text-center w-full uppercase tracking-widest p-2 bg-black/30 rounded border border-neutral-800">
+        {{ statusMensagem }}
+      </div>
+
+      <button type="button" (click)="cadastrarConta()" [disabled]="carregando" class="mt-4 w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-black py-3.5 px-6 rounded shadow-[0_0_15px_rgba(220,38,38,0.3)] transition-all duration-200 uppercase text-xs tracking-widest flex justify-center items-center gap-2 cursor-pointer">
+        <svg *ngIf="!carregando" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg>
+        {{ carregando ? 'Processando...' : 'Registrar Usuário' }}
       </button>
 
     </form>
@@ -42,7 +48,7 @@
     <div class="mt-6 pt-6 border-t border-neutral-800 text-center">
       <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
         Já possui credencial? 
-        <button type="button" class="text-red-500 hover:text-red-400 transition-colors ml-1 cursor-pointer">Fazer Login</button>
+        <button type="button" routerLink="/" class="text-red-500 hover:text-red-400 transition-colors ml-1 cursor-pointer">Fazer Login</button>
       </p>
     </div>
 

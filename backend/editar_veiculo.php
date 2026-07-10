@@ -1,9 +1,7 @@
 <?php
-// 1. FORÇA O PHP A MOSTRAR O ERRO NA TELA (O fim do erro invisível)
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// 2. Liberta o CORS para o Angular conseguir ler
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
@@ -13,16 +11,24 @@ require 'conexao.php';
 $dados_recebidos = file_get_contents("php://input");
 $veiculo = json_decode($dados_recebidos);
 
-// Verifica se chegou o básico (modelo e marca)
-if ($veiculo && !empty($veiculo->modelo) && !empty($veiculo->marca)) {
+if ($veiculo && !empty($veiculo->id) && !empty($veiculo->modelo) && !empty($veiculo->marca)) {
     try {
-        // Query com os 10 campos
-        $sql = "INSERT INTO veiculos (modelo, marca, ano, categoria, preco, imagem_url, quilometragem, motor, placa_final, revisao) 
-                VALUES (:modelo, :marca, :ano, :categoria, :preco, :imagem_url, :quilometragem, :motor, :placa_final, :revisao)";
+        $sql = "UPDATE veiculos SET 
+                modelo = :modelo, 
+                marca = :marca, 
+                ano = :ano, 
+                categoria = :categoria, 
+                preco = :preco, 
+                imagem_url = :imagem_url, 
+                quilometragem = :quilometragem, 
+                motor = :motor, 
+                placa_final = :placa_final, 
+                revisao = :revisao 
+                WHERE id = :id";
         
         $stmt = $pdo->prepare($sql);
         
-        // Dados originais
+        $stmt->bindParam(':id', $veiculo->id);
         $stmt->bindParam(':modelo', $veiculo->modelo);
         $stmt->bindParam(':marca', $veiculo->marca);
         $stmt->bindParam(':ano', $veiculo->ano);
@@ -30,7 +36,6 @@ if ($veiculo && !empty($veiculo->modelo) && !empty($veiculo->marca)) {
         $stmt->bindParam(':preco', $veiculo->preco);
         $stmt->bindParam(':imagem_url', $veiculo->imagem_url);
         
-        // Dados novos (com verificação clássica para não dar erro fatal)
         $km = isset($veiculo->quilometragem) ? $veiculo->quilometragem : '0';
         $motor = isset($veiculo->motor) ? $veiculo->motor : 'Não informado';
         $placa = isset($veiculo->placa_final) ? $veiculo->placa_final : '-';
@@ -43,14 +48,11 @@ if ($veiculo && !empty($veiculo->modelo) && !empty($veiculo->marca)) {
         
         $stmt->execute();
         
-        // Se der tudo certo, devolve o JSON perfeito
-        echo json_encode(["sucesso" => true, "mensagem" => "Veículo salvo com sucesso!"]);
-        
+        echo json_encode(["sucesso" => true, "mensagem" => "Veículo atualizado com sucesso!"]);
     } catch(PDOException $e) {
-        // Se a base de dados reclamar de algo, devolvemos a reclamação em JSON
         echo json_encode(["sucesso" => false, "mensagem" => "Erro MySQL: " . $e->getMessage()]);
     }
 } else {
-    echo json_encode(["sucesso" => false, "mensagem" => "Dados incompletos enviados pelo formulário."]);
+    echo json_encode(["sucesso" => false, "mensagem" => "Dados incompletos para atualização."]);
 }
 ?>

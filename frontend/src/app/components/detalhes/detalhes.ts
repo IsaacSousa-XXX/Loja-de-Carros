@@ -51,4 +51,18 @@ export class Detalhes implements OnInit {
     const elemento = this.galeria.nativeElement;
     this.fotoAtual = Math.round(elemento.scrollLeft / elemento.clientWidth) + 1;
   }
+
+  // Adicione esta função dentro da sua classe Detalhes
+  chamarWhatsApp() {
+    if (!this.veiculo) return;
+    
+    // Já deixei estruturado com o DDD 35, basta trocar os 9s pelo seu número real!
+    const numero = "5535999999999"; 
+    
+    const mensagem = `Olá! Vi o anúncio na King of Cars e tenho muito interesse: *${this.veiculo.marca} ${this.veiculo.modelo} (${this.veiculo.ano})* no valor de R$ ${this.veiculo.preco}. Ainda está disponível?`;
+    
+    // Converte o texto para o formato de link do WhatsApp e abre numa nova aba
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+  }
 }

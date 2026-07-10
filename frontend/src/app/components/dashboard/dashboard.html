@@ -43,37 +43,37 @@
         </button>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-neutral-800 pt-4">
-        <div class="flex flex-col gap-1.5">
-          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Marca</label>
-          <select class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer appearance-none">
-            <option value="">Todas as Marcas</option>
-            <option value="honda">Honda</option>
-            <option value="yamaha">Yamaha</option>
-            <option value="chevrolet">Chevrolet</option>
-            <option value="volkswagen">Volkswagen</option>
-            <option value="bmw">BMW</option>
-          </select>
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Ano</label>
-          <select class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
-            <option value="">Todos os Anos</option>
-            <option value="2026">2026</option>
-            <option value="2025">2025</option>
-            <option value="2024">2024</option>
-            <option value="2023">2023</option>
-            <option value=">=2022">2022 ou anterior</option>
-          </select>
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Tipo de Veículo</label>
-          <select class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
-            <option value="">Carros e Motos</option>
-            <option value="carro">Carro</option>
-            <option value="moto">Moto</option>
-          </select>
-        </div>
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-neutral-800 pt-4">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Marca</label>
+        <select [(ngModel)]="filtroMarca" (change)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer appearance-none">
+          <option value="">Todas as Marcas</option>
+          <option value="Honda">Honda</option>
+          <option value="Yamaha">Yamaha</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Volkswagen">Volkswagen</option>
+          <option value="BMW">BMW</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Ano</label>
+        <select [(ngModel)]="filtroAno" (change)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
+          <option value="">Todos os Anos</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Tipo de Veículo</label>
+        <select [(ngModel)]="filtroTipo" (change)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
+          <option value="">Carros e Motos</option>
+          <option value="Carro">Carro</option>
+          <option value="Moto">Moto</option>
+        </select>
       </div>
     </div>
 

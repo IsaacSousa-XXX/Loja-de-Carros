@@ -1,6 +1,5 @@
 <div class="min-h-screen bg-black font-sans text-neutral-200">
   
-  <!-- BARRA SUPERIOR (NAVBAR ADMIN) -->
   <nav class="bg-neutral-900 border-b border-red-700 px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
     <div class="flex items-center gap-4">
       <h1 class="text-xl font-['Michroma'] tracking-[0.1em] filter drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
@@ -23,18 +22,15 @@
     </div>
   </nav>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main class="p-6 md:p-10 max-w-7xl mx-auto">
     
-    <!-- CABEÇALHO DO PAINEL & BOTÃO DE AÇÃO -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
       <div>
         <h2 class="text-2xl font-black text-white uppercase tracking-tight">Controle de Estoque</h2>
         <p class="text-sm text-neutral-500 mt-1 font-medium">Gerencie os veículos que aparecem na vitrine dos clientes.</p>
       </div>
       
-      <!-- BOTÃO PRINCIPAL DE ADICIONAR (Gatilho para o futuro formulário) -->
-      <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all duration-200 flex items-center gap-2 uppercase text-xs tracking-widest">
+      <button routerLink="/cadastrar" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all duration-200 flex items-center gap-2 uppercase text-xs tracking-widest cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
@@ -42,26 +38,24 @@
       </button>
     </div>
 
-    <!-- CARDS DE ESTATÍSTICAS RÁPIDAS -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       <div class="bg-neutral-900 border border-neutral-800 p-5 rounded relative overflow-hidden">
         <div class="absolute right-0 top-0 h-full w-1 bg-red-600"></div>
         <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-1">Total em Estoque</p>
-        <p class="text-3xl font-black text-white">24 <span class="text-sm text-neutral-600 font-medium">veículos</span></p>
+        <p class="text-3xl font-black text-white">{{ veiculos.length }} <span class="text-sm text-neutral-600 font-medium">veículos</span></p>
       </div>
       <div class="bg-neutral-900 border border-neutral-800 p-5 rounded relative overflow-hidden">
         <div class="absolute right-0 top-0 h-full w-1 bg-neutral-600"></div>
         <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-1">Valor do Pátio</p>
-        <p class="text-3xl font-black text-white"><span class="text-sm text-neutral-600">R$</span> 3.4M</p>
+        <p class="text-3xl font-black text-white"><span class="text-sm text-neutral-600">R$</span> {{ calcularValorPatio() }}</p>
       </div>
       <div class="bg-neutral-900 border border-neutral-800 p-5 rounded relative overflow-hidden">
         <div class="absolute right-0 top-0 h-full w-1 bg-neutral-600"></div>
         <p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-1">Última Atualização</p>
-        <p class="text-xl font-bold text-white mt-2">Hoje, 14:30</p>
+        <p class="text-xl font-bold text-white mt-2">Hoje</p>
       </div>
     </div>
 
-    <!-- TABELA DE DADOS DO BANCO (Mockada por enquanto) -->
     <div class="bg-neutral-900 border border-neutral-800 rounded overflow-x-auto shadow-lg">
       <table class="w-full text-left border-collapse">
         <thead>
@@ -74,80 +68,58 @@
             <th class="p-4 font-bold text-right">Ações</th>
           </tr>
         </thead>
+        
         <tbody class="divide-y divide-neutral-800 text-sm">
           
-          <!-- LINHA 1: Carro Exemplo -->
-          <tr class="hover:bg-neutral-800/50 transition-colors group">
-            <td class="p-4 flex items-center gap-3">
-              <div class="w-12 h-12 bg-neutral-800 rounded flex items-center justify-center border border-neutral-700 overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=100&q=80" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs text-neutral-500 font-mono hidden lg:inline">#KOC-001</span>
-            </td>
-            <td class="p-4">
-              <p class="font-bold text-white text-base">Porsche 911 GT3</p>
-              <p class="text-xs text-neutral-500 uppercase tracking-wider">Porsche</p>
-            </td>
-            <td class="p-4 hidden md:table-cell text-neutral-300 font-mono">2024</td>
-            <td class="p-4 hidden sm:table-cell">
-              <span class="bg-neutral-950 text-neutral-400 border border-neutral-700 px-2 py-1 rounded text-[10px] uppercase tracking-widest font-bold">Carro</span>
-            </td>
-            <td class="p-4 font-black text-white">
-              <span class="text-red-500 text-xs mr-1">R$</span>1.850.000
-            </td>
-            <td class="p-4 text-right">
-              <div class="flex justify-end gap-2">
-                <button class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-700 rounded transition-all" title="Editar Veículo">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-                </button>
-                <button class="p-2 text-neutral-400 hover:text-red-500 hover:bg-red-900/30 rounded transition-all" title="Excluir do Banco">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                </button>
-              </div>
+          <tr *ngIf="carregando">
+            <td colspan="6" class="p-8 text-center text-neutral-500 font-bold uppercase tracking-widest text-xs">
+              Acessando banco de dados...
             </td>
           </tr>
 
-          <!-- LINHA 2: Moto Exemplo -->
-          <tr class="hover:bg-neutral-800/50 transition-colors group">
+          <tr *ngFor="let veiculo of veiculos" class="hover:bg-neutral-800/50 transition-colors group">
+            
             <td class="p-4 flex items-center gap-3">
-              <div class="w-12 h-12 bg-neutral-800 rounded flex items-center justify-center border border-neutral-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              <div class="w-12 h-12 bg-neutral-800 rounded flex items-center justify-center border border-neutral-700 overflow-hidden">
+                 <img *ngIf="veiculo.imagem_url" [src]="veiculo.imagem_url" class="w-full h-full object-cover">
+                 <svg *ngIf="!veiculo.imagem_url" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
               </div>
-              <span class="text-xs text-neutral-500 font-mono hidden lg:inline">#KOC-002</span>
+              <span class="text-xs text-neutral-500 font-mono hidden lg:inline">#KOC-{{ veiculo.id }}</span>
             </td>
+            
             <td class="p-4">
-              <p class="font-bold text-white text-base">CBX 250 Twister</p>
-              <p class="text-xs text-neutral-500 uppercase tracking-wider">Honda</p>
+              <p class="font-bold text-white text-base">{{ veiculo.modelo }}</p>
+              <p class="text-xs text-neutral-500 uppercase tracking-wider">{{ veiculo.marca }}</p>
             </td>
-            <td class="p-4 hidden md:table-cell text-neutral-300 font-mono">2008</td>
+            
+            <td class="p-4 hidden md:table-cell text-neutral-300 font-mono">{{ veiculo.ano }}</td>
+            
             <td class="p-4 hidden sm:table-cell">
-              <span class="bg-neutral-950 text-neutral-400 border border-neutral-700 px-2 py-1 rounded text-[10px] uppercase tracking-widest font-bold">Moto</span>
+              <span class="bg-neutral-950 text-neutral-400 border border-neutral-700 px-2 py-1 rounded text-[10px] uppercase tracking-widest font-bold">{{ veiculo.categoria }}</span>
             </td>
+            
             <td class="p-4 font-black text-white">
-              <span class="text-red-500 text-xs mr-1">R$</span>8.500
+              <span class="text-red-500 text-xs mr-1">R$</span>{{ veiculo.preco }}
             </td>
+            
             <td class="p-4 text-right">
               <div class="flex justify-end gap-2">
-                <button class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-700 rounded transition-all" title="Editar Veículo">
+                <button routerLink="/editar/{{veiculo.id}}" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-700 rounded transition-all cursor-pointer" title="Editar Veículo">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                 </button>
-                <button class="p-2 text-neutral-400 hover:text-red-500 hover:bg-red-900/30 rounded transition-all" title="Excluir do Banco">
+                <button (click)="deletarVeiculo(veiculo.id)"class="p-2 text-neutral-400 hover:text-red-500 hover:bg-red-900/30 rounded transition-all cursor-pointer" title="Excluir do Banco">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                 </button>
               </div>
             </td>
+            
           </tr>
 
         </tbody>
       </table>
       
-      <!-- RODAPÉ DA TABELA (Paginação) -->
       <div class="bg-neutral-950 border-t border-neutral-800 p-4 flex justify-between items-center text-xs font-bold text-neutral-500 uppercase tracking-widest">
-        <span>Mostrando 2 de 24 veículos</span>
-        <div class="flex gap-2">
-          <button class="px-3 py-1 bg-neutral-900 border border-neutral-800 rounded hover:text-white transition-colors disabled:opacity-50" disabled>Anterior</button>
-          <button class="px-3 py-1 bg-neutral-900 border border-neutral-800 rounded hover:text-white transition-colors">Próxima</button>
-        </div>
+        <span *ngIf="!carregando">Mostrando {{ veiculos.length }} veículos</span>
       </div>
     </div>
 

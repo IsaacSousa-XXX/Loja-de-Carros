@@ -1,21 +1,27 @@
 import { RouterModule } from '@angular/router';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.html',
   standalone: true,
-  imports: [CommonModule, RouterModule] // Essencial para usarmos o *ngFor e *ngIf no HTML
+  imports: [CommonModule, RouterModule, FormsModule]
 })
 export class Dashboard implements OnInit {
-  // Array que vai guardar a lista de veículos que vier do banco
   estoque: any[] = [];
+  estoqueFiltrado: any[] = [];
   carregando: boolean = true;
+
+  // Variáveis dos filtros (O erro estava aqui: faltavam estas declarações)
+  filtroTermo: string = '';
+  filtroMarca: string = '';
+  filtroAno: string = ''; 
+  filtroTipo: string = '';
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  // O ngOnInit roda automaticamente assim que a página é aberta
   ngOnInit() {
     this.carregarEstoqueVitrine();
   }
@@ -24,19 +30,33 @@ export class Dashboard implements OnInit {
     try {
       const resposta = await fetch('http://localhost:8000/listar_veiculos.php');
       const resultado = await resposta.json();
-
       if (resultado.sucesso) {
-        // Guarda os dados na variável
         this.estoque = resultado.dados;
-      } else {
-        console.error('Erro retornado pelo banco:', resultado.mensagem);
+        this.estoqueFiltrado = resultado.dados;
       }
     } catch (erro) {
-      console.error('Erro de conexão. O PHP está rodando?', erro);
+      console.error('Erro de conexão:', erro);
     } finally {
-      // Tira o status de carregamento e avisa o Angular para atualizar a tela
       this.carregando = false;
       this.cdr.detectChanges();
     }
+  }
+
+  filtrar() {
+    this.estoqueFiltrado = this.estoque.filter(v => {
+      // Verifica se o termo de busca está no modelo ou marca
+      const matchTermo = (v.modelo + ' ' + v.marca).toLowerCase().includes(this.filtroTermo.toLowerCase());
+      
+      // Verifica marca (se selecionada)
+      const matchMarca = this.filtroMarca === '' || v.marca.toLowerCase() === this.filtroMarca.toLowerCase();
+      
+      // Verifica tipo (se selecionado)
+      const matchTipo = this.filtroTipo === '' || v.categoria.toLowerCase() === this.filtroTipo.toLowerCase();
+      
+      // Verifica ano (se selecionado)
+      const matchAno = this.filtroAno === '' || v.ano.toString() === this.filtroAno;
+
+      return matchTermo && matchMarca && matchTipo && matchAno;
+    });
   }
 }
