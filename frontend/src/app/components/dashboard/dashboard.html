@@ -27,12 +27,23 @@
         <h1 class="text-3xl font-black text-white tracking-tight uppercase">Catálogo de <span class="text-red-600">Veículos</span></h1>
         <p class="text-neutral-400 mt-1 text-sm font-medium">Explore nosso catálogo de veículos premium</p>
       </div>
+      
+      <!-- BOTÃO DE SAIR ELEGANTE E ALINHADO À DIREITA -->
+      <button (click)="sair()" class="text-neutral-400 hover:text-white bg-neutral-900 hover:bg-red-600 border border-neutral-800 hover:border-red-600 transition-all duration-300 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest py-2.5 px-4 rounded shadow-lg cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        Sair do Sistema
+      </button>
     </div>
+  
 
+    <!-- CAIXA DO FILTRO -->
     <div class="mb-8 bg-neutral-900 border border-neutral-800 p-4 rounded flex flex-col gap-4 shadow-lg">
       <div class="flex flex-col sm:flex-row gap-3">
         <div class="relative flex-1">
-          <input type="text" placeholder="Buscar veículo por nome ou modelo..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 rounded px-4 py-2.5 pl-10 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+          <!-- AQUI: Adicionado ngModel e ngModelChange para o texto funcionar -->
+          <input type="text" [(ngModel)]="filtroTermo" (ngModelChange)="filtrar()" placeholder="Buscar veículo por nome ou modelo..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 rounded px-4 py-2.5 pl-10 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-neutral-500">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </div>
@@ -43,52 +54,56 @@
         </button>
       </div>
 
-     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-neutral-800 pt-4">
-      <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Marca</label>
-        <select [(ngModel)]="filtroMarca" (change)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer appearance-none">
-          <option value="">Todas as Marcas</option>
-          <option value="Honda">Honda</option>
-          <option value="Yamaha">Yamaha</option>
-          <option value="Chevrolet">Chevrolet</option>
-          <option value="Volkswagen">Volkswagen</option>
-          <option value="BMW">BMW</option>
-        </select>
-      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-neutral-800 pt-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Marca</label>
+          <select [(ngModel)]="filtroMarca" (ngModelChange)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer appearance-none">
+            <option value="">Todas as Marcas</option>
+            <option value="Honda">Honda</option>
+            <option value="Yamaha">Yamaha</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="BMW">BMW</option>
+          </select>
+        </div>
 
-      <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Ano</label>
-        <select [(ngModel)]="filtroAno" (change)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
-          <option value="">Todos os Anos</option>
-          <option value="2026">2026</option>
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-        </select>
-      </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Ano</label>
+          <select [(ngModel)]="filtroAno" (ngModelChange)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
+            <option value="">Todos os Anos</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
 
-      <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Tipo de Veículo</label>
-        <select [(ngModel)]="filtroTipo" (change)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
-          <option value="">Carros e Motos</option>
-          <option value="Carro">Carro</option>
-          <option value="Moto">Moto</option>
-        </select>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Tipo de Veículo</label>
+          <select [(ngModel)]="filtroTipo" (ngModelChange)="filtrar()" class="w-full bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer">
+            <option value="">Carros e Motos</option>
+            <option value="Carro">Carro</option>
+            <option value="Moto">Moto</option>
+          </select>
+        </div>
       </div>
-    </div>
+    </div> <!-- AQUI: A div que fecha a caixa de filtro! -->
 
     <div *ngIf="carregando" class="flex justify-center items-center py-20 text-neutral-500 font-black uppercase tracking-widest text-sm">
       <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
       Acessando banco de dados...
     </div>
 
-    <div *ngIf="!carregando && estoque.length === 0" class="text-center py-20 border border-dashed border-neutral-800 rounded bg-neutral-900/50">
+    <!-- AQUI: Usando o estoqueFiltrado ao invés de estoque -->
+    <div *ngIf="!carregando && estoqueFiltrado.length === 0" class="text-center py-20 border border-dashed border-neutral-800 rounded bg-neutral-900/50">
       <p class="text-neutral-500 font-bold uppercase tracking-widest text-sm">A vitrine está vazia.</p>
     </div>
 
-    <div *ngIf="!carregando && estoque.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- AQUI: Usando o estoqueFiltrado ao invés de estoque -->
+    <div *ngIf="!carregando && estoqueFiltrado.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       
-<div *ngFor="let veiculo of estoque" [routerLink]="['/detalhes', veiculo.id]" class="bg-neutral-900 rounded border border-neutral-800 overflow-hidden hover:border-red-600 transition-colors duration-300 group cursor-pointer">        
+      <!-- AQUI: Loop na lista filtrada (let veiculo of estoqueFiltrado) -->
+      <div *ngFor="let veiculo of estoqueFiltrado" [routerLink]="['/detalhes', veiculo.id]" class="bg-neutral-900 rounded border border-neutral-800 overflow-hidden hover:border-red-600 transition-colors duration-300 group cursor-pointer">        
         <div class="h-52 bg-neutral-800 relative overflow-hidden group-hover:opacity-90 transition-opacity flex items-center justify-center">
           
           <img *ngIf="veiculo.imagem_url" [src]="veiculo.imagem_url" alt="{{ veiculo.modelo }}" class="w-full h-full object-cover">

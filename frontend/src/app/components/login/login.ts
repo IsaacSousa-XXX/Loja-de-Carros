@@ -48,11 +48,14 @@ export class Login {
           this.statusMensagem = 'Acesso liberado! Redirecionando...';
           
           setTimeout(() => {
-            // O SEGURANÇA: Separa o fluxo entre Admin e Usuário Comum
             if (this.credenciais.email === 'admin@koc.com') {
-              this.router.navigate(['/estoque']); // Direto para o painel de controle
+              // GRAVA O CRACHÁ DE ADMIN NO NAVEGADOR
+              localStorage.setItem('koc_perfil', 'admin');
+              this.router.navigate(['/estoque']); 
             } else {
-              this.router.navigate(['/vitrine']); // Público comum vai para o Dashboard/Vitrine
+              // GRAVA O CRACHÁ DE CLIENTE COMUM
+              localStorage.setItem('koc_perfil', 'cliente');
+              this.router.navigate(['/vitrine']); 
             }
           }, 800); 
           

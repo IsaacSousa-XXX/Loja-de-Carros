@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ export class Dashboard implements OnInit {
   filtroAno: string = ''; 
   filtroTipo: string = '';
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private router: Router) {}
 
   ngOnInit() {
     this.carregarEstoqueVitrine();
@@ -58,5 +58,14 @@ export class Dashboard implements OnInit {
 
       return matchTermo && matchMarca && matchTipo && matchAno;
     });
+  }
+
+  // Não se esqueça de importar o Router e injetar no constructor se já não tiver!
+  sair() {
+    // 1. Arranca o crachá do navegador
+    localStorage.removeItem('koc_perfil');
+    
+    // 2. Chuta o usuário de volta para a tela de login
+    this.router.navigate(['/']);
   }
 }

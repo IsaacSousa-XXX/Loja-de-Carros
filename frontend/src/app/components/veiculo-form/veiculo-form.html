@@ -61,11 +61,22 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-2">
-          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Link da Imagem</label>
-          <input type="text" [(ngModel)]="novoVeiculo.imagem_url" name="imagem_url" placeholder="Cole a URL da foto do veículo..." class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Upload de Imagem</label>
+          
+          <input 
+            type="file" 
+            accept="image/*" 
+            (change)="aoSelecionarImagem($event)" 
+            class="w-full bg-[#0a0a0a] border border-[#1a1a1a] text-neutral-500 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-600 transition-colors cursor-pointer file:cursor-pointer file:mr-4 file:py-1 file:px-3 file:rounded-sm file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:bg-[#1a1a1a] file:text-neutral-400 hover:file:text-white"
+          >
+          
+          <!-- Um aviso super discreto (e no estilo King of Cars) que aparece quando a imagem for lida com sucesso -->
+          <div *ngIf="novoVeiculo.imagem_url" class="text-[10px] font-bold uppercase tracking-widest text-red-500 mt-1 flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            Arquivo Processado
+          </div>
         </div>
-
         <div class="flex flex-col gap-2">
           <label class="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Quilometragem</label>
           <input type="text" [(ngModel)]="novoVeiculo.quilometragem" name="quilometragem" placeholder="Ex: 45.000 km" class="w-full bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-700 rounded px-4 py-3 focus:outline-none focus:border-red-600 transition-colors text-sm font-medium">

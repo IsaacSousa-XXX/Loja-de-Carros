@@ -115,4 +115,19 @@ export class VeiculoForm implements OnInit {
       this.cdr.detectChanges();
     }
   }
+  aoSelecionarImagem(event: any) {
+    const file = event.target.files[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      
+      reader.onload = (e: any) => {
+        // ATENÇÃO AQUI: Troque 'veiculo' pelo nome exato da variável que 
+        // guarda os dados do seu formulário (ex: this.novoVeiculo, this.dadosForm, etc)
+        this.novoVeiculo.imagem_url = e.target.result; 
+      };
+      
+      reader.readAsDataURL(file); 
+    }
+  }
 }

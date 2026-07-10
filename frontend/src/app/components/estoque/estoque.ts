@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-estoque',
@@ -12,10 +12,23 @@ export class Estoque implements OnInit {
   veiculos: any[] = [];
   carregando: boolean = true;
 
-  // Injetamos o NgZone para resolver o problema dos dois cliques
-  constructor(private cdr: ChangeDetectorRef, private zone: NgZone) {}
+  // Injetamos o NgZone para resolver o problema dos dois cliques e o Router para a navegação
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    private zone: NgZone, 
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    // 1. A FORÇA BRUTA: Bate a porta na cara se não tiver crachá de admin
+    const perfil = localStorage.getItem('koc_perfil');
+    
+    if (perfil !== 'admin') {
+      this.router.navigate(['/']); // Chuta pro login
+      return; // Para a execução do código aqui, impedindo o carregamento da tabela
+    }
+
+    // 2. Se for admin autenticado, a vida segue e carrega a tabela do banco
     this.carregarEstoque();
   }
 
@@ -37,7 +50,7 @@ export class Estoque implements OnInit {
     }
   }
 
-  // FUNÇÃO CORRIGIDA: Tratamento cirúrgico de valores numéricos
+  // Tratamento cirúrgico de valores numéricos
   calcularValorPatio() {
     let total = 0;
     
@@ -71,7 +84,7 @@ export class Estoque implements OnInit {
     return total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  // FUNÇÃO CORRIGIDA: Exclusão com atualização instantânea no primeiro clique
+  // Exclusão com atualização instantânea no primeiro clique
   async deletarVeiculo(id: number) {
     if (confirm('Tem a certeza que deseja excluir este veículo permanentemente?')) {
       try {
@@ -98,4 +111,15 @@ export class Estoque implements OnInit {
       }
     }
   }
+
+  sair() {
+    // 1. Arranca o crachá do navegador
+    localStorage.removeItem('koc_perfil');
+    
+    // 2. Chuta o usuário de volta para a tela de login
+    this.router.navigate(['/']);
+  }
+  // Só precisamos destas duas variáveis agora
+  imagemUrlGerada: string = '';
+  processandoImagem: boolean = false;
 }

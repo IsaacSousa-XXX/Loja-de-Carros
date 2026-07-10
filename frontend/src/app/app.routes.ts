@@ -5,6 +5,8 @@ import { VeiculoForm } from './components/veiculo-form/veiculo-form';
 import { Login } from './components/login/login';       
 import { Estoque } from './components/estoque/estoque'; 
 import { Cadastro } from './components/cadastro/cadastro';
+
+
 export const routes: Routes = [
   // 1. Agora a rota inicial vazia carrega o Login direto!
   { path: '', component: Login }, 
@@ -16,5 +18,5 @@ export const routes: Routes = [
   { path: 'cadastrar', component: VeiculoForm },
   { path: 'detalhes/:id', component: Detalhes },
   { path: 'editar/:id', component: VeiculoForm },
-  { path: 'cadastro', component: Cadastro }
+  { path: 'cadastro', component: Cadastro },
 ];
